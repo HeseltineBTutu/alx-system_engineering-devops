@@ -10,7 +10,7 @@ do
 
 	while [ $counter_min -lt 60 ]
 	do
-		echo $counter_min
+		echo "$counter_min"
 		(( counter_min++ ))
 	done
 	(( counter_hr++ ))
