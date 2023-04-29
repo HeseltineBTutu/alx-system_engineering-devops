@@ -6,4 +6,4 @@ while IFS=':' read -r username password uid gid info home shell;
 do
 	# Print the username, uid, and home directory for each user
 	echo "$username:$uid:$home"
-done < /etc/passwd
+done < "/etc/passwd"
