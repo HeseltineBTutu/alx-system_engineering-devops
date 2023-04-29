@@ -20,5 +20,5 @@ do
 	sleep 2
 	trap 'echo "I hate the kill command" && cleanup' SIGTERM
 	trap 'echo "Y U no love me?!"' SIGINT
-	trap 'cleanup' SIGQUIT SIGTERM
+	trap 'cleanup' SIGQUIT
 done
