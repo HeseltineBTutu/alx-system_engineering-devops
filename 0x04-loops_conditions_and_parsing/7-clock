@@ -2,12 +2,11 @@
 #A bash script that displays time for 12 hours and 59 minutes:
 
 counter_hr=0
+
 while [ $counter_hr -le 13 ]
 do
 	echo "Hour: $counter_hr"
-
 	counter_min=1
-
 	while [ $counter_min -le 59 ]
 	do
 		echo "$counter_min"
