@@ -2,6 +2,19 @@
 #include <stdlib.h>
 #include <unistd.h>
 /**
+ * infinite_while - Run an infinite while loop.
+ *
+ * Return: Always 0.
+ */
+int infinite_while(void)
+{
+	while (1)
+	{
+		sleep(1);
+	}
+}
+
+/**
  * main- a C program that creates 5 zombie processes.
  *
  * Return: Always 0 (Success)
@@ -23,17 +36,15 @@ int main(void)
 		else if (pid > 0)
 		{
 			printf("Zombie process created, PID: %d\n", pid);
+			sleep(1);
 		}
 		else
 		{
-			fprintf(stderr, "Fork failed\n");
-			exit(1);
+			exit(0);
 		}
 	}
 
-	while (1)
-	{
-		sleep(1);
-	}
-	return (0);
+	infinite_while();
+
+	return (EXIT_SUCCESS);
 }
