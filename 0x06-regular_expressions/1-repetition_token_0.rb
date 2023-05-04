@@ -1,4 +1,2 @@
 #!/usr/bin/env ruby
-string = "hbn\nhbtn\nhbttn\nhbtttn\nhbttttn\nhbtttttn\nhbttttttn"
-matches = string.scan(/hb[t]+n/)
-puts matches
+puts ARGV[0].scan(/hbt{2,5}n/).join
