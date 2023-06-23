@@ -1,7 +1,5 @@
-# # Kills a process named killmenow
+# Kills a process named killmenow
 
-exec { 'killmenow':
-  command => 'pkill -f killmenow',
-  path    => '/usr/bin:/usr/sbin:/bin:/sbin',
-  refreshonly ==> true,
+exec { 'pkill -f killmenow':
+  path    => '/usr/bin:/usr/sbin:/bin:/sbin'
 }
