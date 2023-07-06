@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Bash script that configures a new Ubuntu machine
+
+# Update package lists
+apt-get update
+
+# Install nginx
+apt-get install -y nginx
+
+# Configure nginx
+cat > /etc/nginx/sites-available/default <<EOF
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    location / {
+        root /var/www/html;
+        index index.html;
+    }
+}
+EOF
+
+# Create HTML file
+echo "Hello World!" > /var/www/html/index.html
+
+# Restart nginx
+service nginx restart
