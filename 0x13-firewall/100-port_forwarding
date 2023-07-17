@@ -1,0 +1,4 @@
+# Redirect incoming traffic from port 8080 to port 80
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+sudo ufw reload
+sudo ufw status verbose
