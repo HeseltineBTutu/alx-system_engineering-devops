@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# a Bash script that accepts one argument
+username="$1"
+whoami_output=$(sudo -u "$username" whoami)
+
+echo "$whoami_output"
