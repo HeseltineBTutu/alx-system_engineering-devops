@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+# Install Nginx if not already installed
+if ! command -v nginx &> /dev/null; then
+  echo "Installing Nginx..."
+  apt-get update
+  apt-get install -y nginx
+fi
+
+# Set Nginx to listen on all active IPs on port 8080
+sed -i 's/listen 80 default_server;/listen 8080 default_server;/g' /etc/nginx/sites-available/default
+
+# Create the nginx user if it doesn't exist
+if ! id -u nginx &>/dev/null; then
+  echo "Creating nginx user..."
+  useradd -r nginx -s /sbin/nologin
+fi
+
+# Change the user in the Nginx configuration to nginx
+sed -i 's/user www-data;/user nginx;/g' /etc/nginx/nginx.conf
+
+# Create a new directory to store Nginx logs (if it doesn't exist)
+mkdir -p /var/log/nginx
+
+# Change ownership of the log directory to the nginx user
+chown -R nginx:nginx /var/log/nginx
+
+# Reload Nginx to apply the changes
+nginx -s reload
+
+echo "Nginx is now running as the nginx user and listening on all active IPs on port 8080."
+
