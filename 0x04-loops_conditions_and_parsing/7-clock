@@ -4,23 +4,20 @@
 # - display minutes from 1 to 59
 
 # Initialize hours and minutes
-hours=0
-minutes=1
+hour=0
 
-while [ "$hours" -le 12 ]; do
+while [ "$hour" -le 12 ]; do
 	# Display hour
-	echo "Hour: $hours"
+	echo "Hour: $hour"
+	minute=1
 
-	# Display minutes from 1 to 59
-	seq 1 59
+	while [ $minute -le 59 ]
+	do
+		echo "$minute"
+		(( minute++ ))
+	done
 
-	# Increment minutes
-	((hours++))
+	(( hour++ ))
 
-	# Check if minutes reached 60, reset minutes to 1 and increment
-	# hours
-	if [ "$hours" -eq 13 ]; then
-		hours=1
-	fi
 done
 
