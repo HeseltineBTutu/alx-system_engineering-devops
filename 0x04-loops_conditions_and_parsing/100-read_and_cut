@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+#  a Bash script that displays the content of the file /etc/passwd
+# Script only display:
+# - username
+# - user id
+# Home directory path for the user
+
+# Set IFS to ':' to parse fields in /etc/passwd
+IFS=":"
+
+# Open /etc/passwd file for reading
+while read -r username _ uid _ _ home _; do
+	echo "$username:$uid:$home"
+done < /etc/passwd
+
+# Reset IFS to its default value
+unset IFS
