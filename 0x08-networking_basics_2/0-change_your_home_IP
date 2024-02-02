@@ -17,9 +17,3 @@ echo "127.0.0.2	localhost" >> /etc/hosts
 
 # Set the IP address for facebook.com to 8.8.8.8
 echo "8.8.8.8	facebook.com" >> /etc/hosts
-
-if [ $? -eq 0 ]; then
-	echo "Hosts file configured successfully."
-else
-	echo "Error configuring hosts file."
-fi
