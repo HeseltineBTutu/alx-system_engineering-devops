@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 def match_repetition(string)
-  regex = /hb(t*)n/
+  regex = /hbt{2,5}n/
   match = string.match(regex)
   puts match ? match[0] : ''
 end
