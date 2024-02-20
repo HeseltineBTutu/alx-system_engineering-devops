@@ -1,9 +1,2 @@
 #!/usr/bin/env ruby
-
-def match_repetition(string)
-  regex = /hb?t?n/
-  match = string.scan(regex)
-  puts match.join
-end
-
-match_repetition(ARGV[0])
+puts ARGV[0].scan(/hb?t?n/).join
