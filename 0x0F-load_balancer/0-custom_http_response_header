@@ -1,27 +1,32 @@
 #!/usr/bin/env bash
 # Script: 0-custom_http_response_header
 # Description: Configure Nginx to include a custom HTTP response header
-# Parameters: None
 
-# Install Nginx
 apt-get update
 apt-get install -y nginx
 
-# Configure Nginx to include custom header
-echo 'server {
+mkdir -p /var/www/html
+touch /var/www/html/index.html
+echo "Holberton School" > /var/www/html/index.html
+touch /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+printf %s "server {
     listen 80 default_server;
     listen [::]:80 default_server;
+    add_header X-Served-By $HOSTNAME;
+    root   /var/www/html;
+    index  index.html index.htm;
 
-    root /var/www/html;
-    index index.html index.htm;
-
-    server_name _;
-
-    location / {
-        try_files $uri $uri/ =404;
-        add_header X-Served-By $HOSTNAME;
+    location /redirect_me {
+        return 301 http://cuberule.com/;
     }
-}' > /etc/nginx/sites-available/default
 
-# Restart Nginx
-systemctl restart nginx
+    error_page 404 /404.html;
+    location /404 {
+      root /var/www/html;
+      internal;
+    }
+}" > /etc/nginx/sites-available/default
+
+service nginx restart
