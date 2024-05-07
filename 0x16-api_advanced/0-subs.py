@@ -17,12 +17,13 @@ def number_of_subscribers(subreddit):
         int: The number of subscribers of the subreddit.
         Returns 0 if the subreddit is invalid.
     """
-    url = f"https://www.reddit.com/r/{subreddit}/about.json?raw_json=1"
-    headers = {'User-Agent': 'Custom User Agent'}
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        data = response.json()
-        subscribers = data['data']['subscribers']
-        return subscribers
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {'User-Agent': 'Custom'}
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
+        return 0
+    elif response.status_code == 200:
+        results = response.json().get("data")
+        return results.get("subscribers")
     else:
         return 0
